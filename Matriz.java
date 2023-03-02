@@ -1,7 +1,7 @@
-//TAREA PROGRAMADA 1
+//TAREA PROGRAMADA 3
 //DANIEL ROJAS MORALES - C26836
 //RAQUEL ROJAS CASTILLO - C26766
-public class Matriz {
+public class Matriz{
 
     private int valor;
     private boolean usado;
@@ -66,7 +66,7 @@ public class Matriz {
     }//fin método verificarMatriz
 
     public static void imprimirMatriz(Matriz[][] matriz){
-        System.out.println("Tablero de juego: "); //esto si quiere lo quita, solo agregro cosas para que parezca que avancé algo xd
+        System.out.println("Tablero de juego:\n"); //esto si quiere lo quita, solo agregro cosas para que parezca que avancé algo xd
         for(int i=0; i<matriz.length; i++){
             for(int j=0; j<matriz[i].length; j++){
                 System.out.printf("%4d", matriz[i][j].getValor());

@@ -1,12 +1,7 @@
-//TAREA PROGRAMADA 1
+//TAREA PROGRAMADA 3
 //DANIEL ROJAS MORALES - C26836
 //RAQUEL ROJAS CASTILLO - C26766
-import java.io.File;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class Archivo {
     
@@ -59,10 +54,51 @@ public class Archivo {
             return matriz;
 
         } catch (IOException ex) {
-            System.out.println("Error al encontrar la matriz:");
+            System.out.println("Error al cargar la matriz:");
             System.out.println("Verifique que el archivo "+nombreArchivo+" exista");
             return null;
         }
     }//fin método cargarTableroGuardado
 
-}
+    public static void guardarListaEnBinario(ListaDoble lista){
+        File archivo = new File("escrituraBinaria.dat");
+
+        try {
+            FileOutputStream lisb = new FileOutputStream(archivo);
+            ObjectOutputStream escribir = new ObjectOutputStream(lisb);
+
+            escribir.writeObject(lista);
+            escribir.close();
+            lisb.close();
+            
+            System.out.println("¡Archivo guardado con éxito!");
+        } catch (Exception e) {
+            System.out.println("Error al guardar la lista");
+        }
+    }//Fin método guardarListaEnBinario
+
+    public static void cargarListaBinaria(String nombreArchivo){
+        File archivo = new File("nombreArchivo.dat");
+
+        try {
+            FileInputStream fis = new FileInputStream(archivo);
+            ObjectInputStream leer;
+            leer = new ObjectInputStream(fis);
+
+            System.out.println("Cargando lista...");
+            while (fis.available()>0) {
+                ListaDoble lista = (ListaDoble) leer.readObject();
+                System.out.print(lista);
+            }
+            System.out.println("");
+            leer.close();
+
+        } catch (Exception e) {
+            System.out.println("Error al cargar la lista");
+        }
+    }//fin método cargarListaBinaria
+
+    
+    
+
+}//fin clase archivo

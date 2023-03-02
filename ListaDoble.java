@@ -1,10 +1,10 @@
- //TAREA PROGRAMADA 1
+ //TAREA PROGRAMADA 3
 //DANIEL ROJAS MORALES - C26836
 //RAQUEL ROJAS CASTILLO - C26766
  class ListaDoble {
 
-    Nodo inicio;
-    Nodo fin;
+    NodoLista inicio;
+    NodoLista fin;
 
     public ListaDoble(){
         inicio = null;
@@ -18,7 +18,7 @@
             for (int j = 0; j < matriz[i].length; j++) {
                 if (matriz[i][j].getValor() % 2 != 0) {
                     valor = matriz[i][j].getValor();
-                    Nodo nuevo = new Nodo();
+                    NodoLista nuevo = new NodoLista();
                     nuevo.valor = valor;
                     if (inicio == null) {
                        inicio = nuevo;
@@ -38,7 +38,7 @@
     public void imprimirLista(){
         System.out.println("\nLos valores de la lista doble son:\n");
         if (inicio != null) {
-            Nodo actual = inicio;
+            NodoLista actual = inicio;
             while (actual != null) {
                 System.out.print(actual.valor + " ");
                 actual = actual.siguiente;
@@ -50,7 +50,7 @@
     //este método busca el elemento más grande de la lista
     public static int elementoGrande(ListaDoble lista){
         int maximo = lista.inicio.valor;
-        Nodo actual = lista.inicio;
+        NodoLista actual = lista.inicio;
 
         while (actual != null) {
             if (actual.valor > maximo) {
@@ -65,7 +65,7 @@
     //este método busca el elemento más pequeño de la lista
     public static int elementoPequeno(ListaDoble lista){
         int minimo = lista.inicio.valor;
-        Nodo actual = lista.inicio;
+        NodoLista actual = lista.inicio;
 
         while (actual != null) {
             if (actual.valor < minimo) {
@@ -79,7 +79,7 @@
     public static double promedio(ListaDoble lista) {
         int suma = 0;
         int contador = 0;
-        Nodo actual = lista.inicio;
+        NodoLista actual = lista.inicio;
 
         while (actual != null) {
             suma += actual.valor;
@@ -108,7 +108,7 @@
     //método para contar la cantidad de primos
     public static int cantidadPrimos(ListaDoble lista) {
         int contador = 0;
-        Nodo actual = lista.inicio;
+        NodoLista actual = lista.inicio;
 
         while (actual != null) {
             if (esPrimo(actual.valor)) {
