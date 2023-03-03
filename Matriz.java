@@ -45,7 +45,7 @@ public class Matriz{
         return tablero;
     }// fin método crearTablero
 
-    //método para verififcar que la matriz tenga la misma cantidad de pares e impares (50 y 50)
+    //método para verififcar que la matriz tenga la misma cantidad de pares e impares (18 y 18)
     public static boolean verificarMatriz(Matriz[][] matriz){
         boolean flag = true;
         int pares=0, impares=0, num=0;
@@ -93,6 +93,6 @@ public class Matriz{
         System.out.println(pares);
     }
 
-    
+
 
 }// fin clase

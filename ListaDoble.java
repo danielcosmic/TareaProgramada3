@@ -1,7 +1,7 @@
  //TAREA PROGRAMADA 3
 //DANIEL ROJAS MORALES - C26836
 //RAQUEL ROJAS CASTILLO - C26766
- class ListaDoble {
+class ListaDoble {
 
     NodoLista inicio;
     NodoLista fin;
@@ -21,10 +21,10 @@
                     NodoLista nuevo = new NodoLista();
                     nuevo.valor = valor;
                     if (inicio == null) {
-                       inicio = nuevo;
-                       fin = nuevo;
-                       inicio.siguiente = null;
-                       inicio.anterior = null;
+                        inicio = nuevo;
+                        fin = nuevo;
+                        inicio.siguiente = null;
+                        inicio.anterior = null;
                     } else {
                         inicio.anterior = nuevo;
                         nuevo.siguiente = inicio;
@@ -121,10 +121,3 @@
     }//fin método cantidadPrimos
 
 }//fin clase Lista
-
-
-
-
-
-
-

@@ -44,46 +44,45 @@ public class Arbol{
                 this.insertar(padre.getIzquierda(), dato);
             }
         }
-        
     }//fin método insertar
 
-    private void preOrder(NodoArbol n){
+    private int preOrder(NodoArbol n){
         if (n != null) {
-            n.imprimirDato();
+            return n.getDato;
             preOrder(n.getIzquierda());
             preOrder(n.getDerecha());
         }
     }//fin método preOrder
 
-    public void orden(NodoArbol n){
+    private int orden(NodoArbol n){
         if(n != null) {
             orden(n.getIzquierda());
-            n.imprimirDato();
+            return n.getDato;
             orden(n.getDerecha());
         }
     }//fin método orden
 
-    private void postOrden(NodoArbol n){
+    private int postOrden(NodoArbol n){
         if(n != null) {
             orden(n.getIzquierda());
             orden(n.getDerecha());
-            n.imprimirDato();
+            return n.getDato;
         }
     }//fin método postOrden
 
-    public void preOrder(){
-        this.preOrder(this.raiz);
+    public int preOrder(){
+        return this.preOrder(this.raiz);
     }
 
-    public void orden(){
-        this.orden(this.raiz);
+    public int orden(){
+        return this.orden(this.raiz);
     }
 
-    public void postOrden(){
-        this.postOrden(this.raiz);
+    public int postOrden(){
+        return this.postOrden(this.raiz);
     }
 
-    public int[] contadorNodos(Matriz[][] matriz, int[] contadorA){
+    public int contadorNodos(Matriz[][] matriz, int[] contadorA){
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[i].length; j++) {
                 if (matriz[i][j].getValor() > 50) {
@@ -95,10 +94,10 @@ public class Arbol{
                 }
             }
         }//fin ciclos for
-        return contadorA;
+        return contadorA[0]+contadorA[1];
     }//fin método contadorNodos
 
-    /*** 
+    /***
     void contarNodosPreOrden(NodoArbol nodo, int[] contador) {
         if (nodo != null) {
             if (nodo.getIzquierda() != null) {
