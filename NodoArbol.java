@@ -43,4 +43,5 @@ public class NodoArbol {
     public void imprimirDato(){
         System.out.print(this.getDato()+" ");
     }
+
 }//fin clase NodoArbol

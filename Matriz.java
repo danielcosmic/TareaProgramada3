@@ -93,6 +93,4 @@ public class Matriz{
         System.out.println(pares);
     }
 
-
-
 }// fin clase

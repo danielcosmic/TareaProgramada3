@@ -25,11 +25,10 @@ public class Main {
             System.out.println("3. ÁRBOL BINARIO");
             System.out.println("\n00. SALIR\n");
             opcion = scanner.nextInt();
+            int subOpcion;
 
             switch (opcion) {
                 case 1: // OPCION 1: MATRIZ
-                    int subOpcion;
-
                     do {
                         System.out.println("\n--- MENU MATRIZ: ---\n");
                         System.out.println("1. Crear nueva matriz");
@@ -37,30 +36,35 @@ public class Main {
                         System.out.println("3. Cargar matriz desde archivo");
                         System.out.println("\n00. Volver al menú principal\n");
                         subOpcion = scanner.nextInt();
-
                         switch (subOpcion) {
                             case 1: //SUBOPCION 1.1: crear nueva matriz
                                 do {
                                     matriz = Matriz.crearTablero();
                                 } while (Matriz.verificarMatriz(matriz));
-                        
                                 Matriz.imprimirMatriz(matriz);
                                 //
                                 break;// fin case 1
                             case 2: //SUBOPCION 1.2: guardar matriz en archivo CSV
-                                Archivo.guardarTableroEnCSV(matriz, "matrizCSV");
+                                try {
+                                    Archivo.guardarTableroEnCSV(matriz, "matrizCSV");
+                                } catch (Exception e) {
+                                    System.out.println("\n*** Debe crear o cargar una matriz antes de utilizar esta opción ***\n");
+                                }
                                 break;// fin case 2
                             case 3: //SUBOPCION 1.3: cargar matriz desde archivo
-                                Archivo.cargarTableroGuardado("matrizCSV");
+                                try {
+                                    matriz = Archivo.cargarTableroGuardado("matrizCSV");
+                                } catch (Exception e) {
+                                    System.out.println("\n*** Debe crear una matriz antes de utilizar esta opción ***\n");
+                                }
                                 break;// fin case 3
                             default:
                                 System.out.println("\n--- Opción inválida ---\n");
                                 break;// fin default
                         }
-
                     } while (subOpcion != 00);
-                    
-                    break; //fin cOPCION 1: MATRIZ
+                    break; //fin OPCION 1: MATRIZ
+
                 case 2: //OPCION 2: LISTA ENLAZADA DOBLE
                     do {
                         System.out.println("\n--- MENU LISTA ENLAZADA DOBLE: ---\n");
@@ -73,7 +77,6 @@ public class Main {
                         System.out.println("7. Cargar elementos de un archivo binario a nueva lista");
                         System.out.println("\n00. Volver al menú principal\n");
                         subOpcion = scanner.nextInt();
-
                         switch (subOpcion) {
                             case 1: //SUBOPCION 2.1: Crear nueva lista enlazada doble
                                 if(matriz != null){
@@ -82,7 +85,6 @@ public class Main {
                                 }else {
                                     System.out.println("\n*** Debe crear o cargar una matriz antes de utilizar esta opción ***\n");
                                 }
-                                
                                 break;// fin case 1
                             case 2: //SUBOPCION 2.2: Obtener elemento más grande
                                 if (lista.inicio != null) {
@@ -120,7 +122,7 @@ public class Main {
                                 }
                                 break;// fin case 6
                             case 7: //SUBOPCION 2.7: Cargar elementos de un archivo binario a nueva lista
-                                Archivo.cargarListaBinaria("listaBinaria");
+                                Archivo.cargarListaBinaria();
                                 break;// fin case 7
                             default:
                                 System.out.println("\n--- Opción inválida ---\n");
@@ -129,6 +131,7 @@ public class Main {
 
                     } while (subOpcion != 00);
                     break; //fin OPCION 2: LISTA ENLAZADA DOBLE
+
                 case 3: //OPCION 3: ÁRBOL BINARIO
                     do {
                         System.out.println("\n--- MENU ÁRBOL BINARIO: ---\n");
@@ -139,7 +142,6 @@ public class Main {
                         System.out.println("5. Cargar los datos del archivo recorrido PreOrder");
                         System.out.println("\n00. Volver al menú principal\n");
                         subOpcion = scanner.nextInt();
-
                         switch (subOpcion) {
                             case 1: //SUBOPCION 3.1: Crear árbol binario
                                 if(matriz != null){
@@ -147,7 +149,6 @@ public class Main {
                                     System.out.println("\nMostrando árbol en Recorrido Order:");
                                     arbol.orden();
                                     System.out.println("");
-
                                 }else {
                                     System.out.println("\n*** Debe crear o cargar una matriz antes de utilizar esta opción ***\n");
                                 }
@@ -169,20 +170,18 @@ public class Main {
                                 }
                                 break;// fin case 3
                             case 4: //SUBOPCION 3.4: Guardar cada recorrido del árbol en archivos de texto
-                                
+                                //
                                 break;// fin case 4
                             case 5: //SUBOPCION 3.5: Cargar los datos del archivo recorrido PreOrder
-                                
+                                //
                                 break;// fin case 5
                             default:
                                 System.out.println("\n--- Opción inválida ---\n");
                                 break;// fin default
                         }//fin switch
-
                     } while (subOpcion != 00);
-
                     break; //fin OPCION 3: submenu de ÁRBOL BINARIO
-            
+
                 default:
                     if (opcion != 00) {
                         System.out.println("\n--- Opción inválida ---\n");
@@ -191,13 +190,7 @@ public class Main {
                     }
                     break;
             }
-
         } while (opcion != 00); //fin do-while del menu principal
-
         scanner.close();
-
-
     }//fin main
-
-
 }//fin clase main

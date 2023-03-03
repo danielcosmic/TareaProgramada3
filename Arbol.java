@@ -46,43 +46,43 @@ public class Arbol{
         }
     }//fin método insertar
 
-    private int preOrder(NodoArbol n){
+    private void preOrder(NodoArbol n){
         if (n != null) {
-            return n.getDato;
+            n.imprimirDato();
             preOrder(n.getIzquierda());
             preOrder(n.getDerecha());
         }
     }//fin método preOrder
 
-    private int orden(NodoArbol n){
+    private void orden(NodoArbol n){
         if(n != null) {
             orden(n.getIzquierda());
-            return n.getDato;
+            n.imprimirDato();
             orden(n.getDerecha());
         }
     }//fin método orden
 
-    private int postOrden(NodoArbol n){
+    private void postOrden(NodoArbol n){
         if(n != null) {
             orden(n.getIzquierda());
             orden(n.getDerecha());
-            return n.getDato;
+            n.imprimirDato();
         }
     }//fin método postOrden
 
-    public int preOrder(){
-        return this.preOrder(this.raiz);
+    public void preOrder(){
+        this.preOrder(this.raiz);
     }
 
-    public int orden(){
-        return this.orden(this.raiz);
+    public void orden(){
+        this.orden(this.raiz);
     }
 
-    public int postOrden(){
-        return this.postOrden(this.raiz);
+    public void postOrden(){
+        this.postOrden(this.raiz);
     }
 
-    public int contadorNodos(Matriz[][] matriz, int[] contadorA){
+    public int[] contadorNodos(Matriz[][] matriz, int[] contadorA){
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[i].length; j++) {
                 if (matriz[i][j].getValor() > 50) {
@@ -94,7 +94,7 @@ public class Arbol{
                 }
             }
         }//fin ciclos for
-        return contadorA[0]+contadorA[1];
+        return contadorA;
     }//fin método contadorNodos
 
     /***

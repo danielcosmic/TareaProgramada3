@@ -2,7 +2,6 @@
 //DANIEL ROJAS MORALES - C26836
 //RAQUEL ROJAS CASTILLO - C26766
 import java.io.*;
-
 public class Archivo {
 
     public static void guardarTableroEnCSV(Matriz[][] tablero, String nombreArchivo){
@@ -25,6 +24,7 @@ public class Archivo {
                     }
                 }//for con j que recorre las columnas
             }//for con i que recorre las filas
+            System.out.println("\n Matriz guardada con éxito");
             buffWrite.close();
         }
         catch (IOException ex) {
@@ -32,7 +32,7 @@ public class Archivo {
         }
     }//fin guardarTablerotEnCSV
 
-    public static int[][] cargarTableroGuardado(String nombreArchivo){
+    public static Matriz[][] cargarTableroGuardado(String nombreArchivo){
         try {
             Matriz[][] matriz = new Matriz[6][6];
             String linea;
@@ -43,17 +43,16 @@ public class Archivo {
             int contador = 0;
             System.out.print("\nCargando datos del tablero guardado desde: "+nombreArchivo);
             while ((linea = buffRead.readLine()) != null) {
-                valoresLinea = linea.split(",");
+                valoresLinea = linea.split("-");
                 for(int i=0; i<valoresLinea.length; i++){
-                    obtenerValor_Usado = linea.split("-");
-                    matriz[contador][i].setValor(Integer.parseInt(obtenerValor_Usado[0]));
-                    matriz[contador][i].setUsado(Boolean.parseBoolean(obtenerValor_Usado[1]));
-                    //prueba de carga
+                    obtenerValor_Usado = valoresLinea[i].split(",");
+                    matriz[contador][i] = new Matriz((Integer.parseInt(obtenerValor_Usado[0])),(Boolean.parseBoolean(obtenerValor_Usado[1])));
                 }//fin for
                 contador++;
             }
             buffRead.close();
-            System.out.println("Matriz cargada con éxito");
+            System.out.println("\n Matriz cargada con éxito");
+            Matriz.imprimirMatriz(matriz);
             return matriz;
 
         } catch (IOException ex) {
@@ -64,15 +63,14 @@ public class Archivo {
     }//fin método cargarTableroGuardado
 
     public static void guardarListaEnBinario(ListaDoble lista){
-        File archivo = new File("escrituraBinaria.dat");
-
+        File archivo = new File("listaBinario.dat");
         try {
-            FileOutputStream lisb = new FileOutputStream(archivo);
-            ObjectOutputStream escribir = new ObjectOutputStream(lisb);
-
+            FileOutputStream fos = new FileOutputStream(archivo);
+            ObjectOutputStream escribir = new ObjectOutputStream(fos);
             escribir.writeObject(lista);
+
             escribir.close();
-            lisb.close();
+            fos.close();
 
             System.out.println("¡Archivo guardado con éxito!");
         } catch (Exception e) {
@@ -91,7 +89,7 @@ public class Archivo {
             System.out.println("Cargando lista...");
             while (fis.available()>0) {
                 ListaDoble lista = (ListaDoble) leer.readObject();
-                System.out.print(ListaDoble.imprimirLista(lista));
+                lista.imprimirLista();
             }
             System.out.println("");
             leer.close();
@@ -100,7 +98,7 @@ public class Archivo {
         }
     }//fin método cargarListaBinaria
 
-    public static void guardarArbol(Arbol arbol, String nombreArchivo, Matriz[][] matriz, int[] contadorA){
+    /*public static void guardarArbol(Arbol arbol, String nombreArchivo, Matriz[][] matriz, int[] contadorA){
         //
         try {
             FileWriter archivo = new FileWriter(nombreArchivo);
@@ -108,12 +106,12 @@ public class Archivo {
             buffWrite = new BufferedWriter(archivo);
 
             for (int i=0; i<arbol.contadorNodos(matriz, contadorA); i++){
-                buffWrite.write(arbol.preOrder()+"\n");
+                buffWrite.write(+"\n");
             }//for con i que recorre las filas
             buffWrite.close();
         }
         catch (IOException ex) {
             System.out.println(ex.toString());
         }
-    }//fin guardarArbol
+    }//fin guardarArbol*/
 }//fin clase archivo

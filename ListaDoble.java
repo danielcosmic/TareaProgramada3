@@ -1,7 +1,7 @@
  //TAREA PROGRAMADA 3
 //DANIEL ROJAS MORALES - C26836
 //RAQUEL ROJAS CASTILLO - C26766
-class ListaDoble {
+class ListaDoble{
 
     NodoLista inicio;
     NodoLista fin;
